@@ -4,4 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <include file="schema/20240816_01_create_user_request_count_table.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>

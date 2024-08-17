@@ -1,5 +1,5 @@
 server:
-  address: 0.0.0.0
+  address: localhost
   port: 9090
 
 spring:
@@ -47,3 +47,11 @@ springdoc:
     path: /swagger-ui.html
     operationsSorter: method
     display-request-duration: true
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: BASIC

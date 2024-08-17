@@ -14,4 +14,4 @@ COPY target/${JAR_FILE} /app/marcinolek.jar
 EXPOSE 9090
 
 # app run command
-ENTRYPOINT ["java", "-jar", "marcinolek.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=docker", "-jar", "marcinolek.jar"]
