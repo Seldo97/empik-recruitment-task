@@ -3,6 +3,7 @@ package pl.com.recruitmentempik.marcinolek.service;
 import jakarta.annotation.Nonnull;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.com.recruitmentempik.marcinolek.dto.GitHubUserDTO;
@@ -25,6 +26,7 @@ public class GitHubUserService {
 
     @Transactional
     public GitHubUserResponseDTO getByLoginAndIncrementUserRequestCount(@Nonnull String login) {
+        checkLoginValidation(login);
         log.info("Get a GitHub user by login [{}]", login);
         GitHubUserDTO gitHubUserDTO = gitHubClient.getUserByLogin(login);
         incrementUserRequestCountAndSave(login);
@@ -49,6 +51,12 @@ public class GitHubUserService {
         log.info("Increment request count for login [{}], current value [{}]", entity.getLogin(), entity.getRequestCount());
         entity.setRequestCount(entity.getRequestCount() + 1);
         return userRequestCountRepository.save(entity);
+    }
+
+    private void checkLoginValidation(String login) {
+        if (Strings.isBlank(login)) {
+            throw new IllegalArgumentException("Login must not be blank");
+        }
     }
 
 }

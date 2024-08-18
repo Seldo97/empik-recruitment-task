@@ -13,8 +13,7 @@ public class GitHubClientErrorDecoder implements ErrorDecoder {
     public Exception decode(String s, Response response) {
         HttpStatus status = HttpStatus.valueOf(response.status());
         String reason = response.reason();
-        String url = response.request().url();
-        log.error("GitHub api error. Url: {}, status: {}, reason: {}", url, status, reason);
+        log.error("GitHub api error. Method: {}, status: {}, reason: {}", s, status, reason);
         return new ResponseStatusException(status, "GitHub api error: " + reason);
     }
 

@@ -17,7 +17,7 @@ public abstract class GitHubUserMapper {
 
     @Named("toCalculations")
     protected BigDecimal toCalculations(GitHubUserDTO dto) {
-        if (dto.getFollowers().equals(0)) {
+        if (dto.getFollowers() == null || dto.getFollowers().equals(0)) {
             return BigDecimal.ZERO;
         }
         return BigDecimal.valueOf(6)
